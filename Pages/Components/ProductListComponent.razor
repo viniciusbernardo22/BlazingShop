@@ -1,0 +1,24 @@
+﻿@using BlazingShop.Models
+
+
+<ul class="list-group">
+    @foreach (var item in _products)
+    {
+        <li class="list-group-item list-group-item-primary">@item.Name</li>
+    }
+</ul>
+
+
+@code {
+    private List<Product> _products = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            int _i = i + 1;
+            Product product = new Product(_i, $"Produto {_i}", $"Descrição Produto {_i}", $"Imagem {_i}", i * 3.5M, 1);
+            _products.Add(product);
+        }
+    }
+}
