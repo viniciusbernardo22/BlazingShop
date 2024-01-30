@@ -1,0 +1,18 @@
+﻿@page "/products";
+
+@inject NavigationManager _navegation
+
+
+<div class="d-flex justify-content-between">
+    <h3>List of Products</h3>
+    <button class="btn btn-success" @onclick="NavToNewProductPage"> new Product</button>
+</div>
+
+
+@code {
+
+    void NavToNewProductPage()
+    {
+        _navegation.NavigateTo("products/create");
+    }
+}

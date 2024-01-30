@@ -8,7 +8,7 @@ namespace BlazingShop.Models
         [Required(ErrorMessage = "Id é obrigatório")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Nome é obrigatório")]
+        [Required(ErrorMessage = "Titulo é obrigatório")]
         [MaxLength(50, ErrorMessage = "Titulo deve ter no máximo 50 caracteres")]
         [MinLength(5, ErrorMessage = "Titulo deve ter no minimo 5 caracteres")]
         public string Title { get; set; } = string.Empty;
