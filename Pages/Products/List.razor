@@ -1,18 +1,34 @@
 ﻿@page "/products";
 
 @inject NavigationManager _navegation
+@inject AppDbContext _context;
 
+<Heading 
+    title="List of Products" 
+    buttonTitle="new Product" 
+    buttonAction="NavToNewProductPage"
+    buttonContext="danger"
+    />
 
-<div class="d-flex justify-content-between">
-    <h3>List of Products</h3>
-    <button class="btn btn-success" @onclick="NavToNewProductPage"> new Product</button>
-</div>
+@if(productsList.Count > 0)
+{
+    <Table ProductList="productsList"></Table>
+} else
+{
+    <div class="alert alert-danger" role="alert"> Não há itens para ser exibidos </div>
+}
 
 
 @code {
+    List<Product> productsList = new();
 
     void NavToNewProductPage()
     {
         _navegation.NavigateTo("products/create");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        productsList = await _context.Products.ToListAsync();
     }
 }

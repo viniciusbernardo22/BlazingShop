@@ -2,7 +2,8 @@
 
 @inject AppDbContext _context
 @inject NavigationManager _navegation
-<h1>New Product</h1>
+
+<Heading title="New Product" buttonTitle="Go back" buttonAction="@NavigateToList" buttonContext="success" />
 
 <EditForm Model="_model" OnValidSubmit="@HandleSubmitAsync">
 
@@ -65,5 +66,10 @@
         {
             _errorMessage = e.Message;
         }
+    }
+
+    public void NavigateToList()
+    {
+        _navegation.NavigateTo("/products");
     }
 }

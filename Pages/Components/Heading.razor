@@ -1,8 +1,31 @@
-﻿<h3>@_title</h3>
+﻿@inherits ComponentBase;
+
+<div class="d-flex justify-content-between">
+    <h3>@title</h3>
+
+    @if (!string.IsNullOrEmpty(buttonTitle))
+    {
+        <button class="btn btn-@buttonContext" @onclick="@buttonAction">@buttonTitle</button>
+    }
+    
+</div>
+
 
 @code {
-    private string _title = string.Empty;
+    [Parameter, EditorRequired]
+    public string title { get; set; } = string.Empty;
 
+    [Parameter]
+    public string buttonTitle { get; set; } = string.Empty;
 
+    [Parameter]
+    public EventCallback buttonAction { get; set; } = new EventCallback();
 
+    [Parameter]
+    public string buttonContext { get; set; } = "warning";
+
+    protected override void OnInitialized()
+    {
+        
+    }
 }

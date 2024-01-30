@@ -1,0 +1,33 @@
+﻿@inherits ComponentBase;
+
+<table class="table mt-1 mb-1">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">CategoryId</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in ProductList)
+        {
+           <tr>
+                <td>@product.Id</td>
+                <td>@product.Title</td>
+                <td>@product.Price</td>
+                <td>@product.CategoryId</td>
+       </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter, EditorRequired]
+    public List<Product> ProductList { get; set; }
+
+    protected override void OnInitialized()
+    {
+       
+    }
+}
