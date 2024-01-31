@@ -12,10 +12,16 @@
 
 @if(productsList.Count > 0)
 {
-    <Table ProductList="productsList"></Table>
+    <div class="alert alert-success mt-2 mb-1" role="alert">@productsList.Count Produtos Encontrados </div>
+    <Table 
+        ProductList="productsList" 
+        EditAction="(id) => NavigateToEdit(id)" 
+        DeleteAction="(id) => NavigateToDelete(id)"
+    ></Table>
+  
 } else
 {
-    <div class="alert alert-danger" role="alert"> Não há itens para ser exibidos </div>
+    <div class="alert alert-danger mt-2 mb-1" role="alert"> Não há itens para ser exibidos </div>
 }
 
 
@@ -30,5 +36,15 @@
     protected override async Task OnInitializedAsync()
     {
         productsList = await _context.Products.ToListAsync();
+    }
+
+    public void NavigateToEdit(int Id)
+    {
+        _navegation.NavigateTo($"products/edit/{Id}");
+    
+    }
+    public void NavigateToDelete(int Id)
+    {
+        _navegation.NavigateTo($"products/delete/{Id}");
     }
 }

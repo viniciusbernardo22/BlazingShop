@@ -7,6 +7,7 @@
             <th scope="col">Title</th>
             <th scope="col">Price</th>
             <th scope="col">CategoryId</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -15,8 +16,15 @@
            <tr>
                 <td>@product.Id</td>
                 <td>@product.Title</td>
-                <td>@product.Price</td>
+                <td>@product.Price.ToString("C")</td>
                 <td>@product.CategoryId</td>
+                <td>
+                    <div class="d-flex justify-content-left gap-4">
+                        <i class="oi oi-pencil" @onclick="() => EditTrigger(product.Id)"></i>
+                        <i class="oi oi-trash" @onclick="() => DeleteTrigger(product.Id)"></i>
+                    </div>
+           
+                </td>
        </tr>
         }
     </tbody>
@@ -26,8 +34,20 @@
     [Parameter, EditorRequired]
     public List<Product> ProductList { get; set; }
 
-    protected override void OnInitialized()
+    [Parameter]
+    public EventCallback<int> EditAction{ get; set; }
+
+    private async Task EditTrigger(int id)
     {
-       
+        await EditAction.InvokeAsync(id);
     }
+
+    [Parameter]
+    public EventCallback<int> DeleteAction { get; set; }
+
+    private async Task DeleteTrigger(int id)
+    {
+        await DeleteAction.InvokeAsync(id);
+    }
+
 }
