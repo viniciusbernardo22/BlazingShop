@@ -3,9 +3,11 @@
 @inject AppDbContext _context
 @inject NavigationManager _navegation
 
+@* @attribute [StreamRendering(true)]*@
+
 <Heading title="New Product" buttonTitle="Go back" buttonAction="@NavigateToList" buttonContext="success" />
 
-<EditForm Model="_model" OnValidSubmit="@HandleSubmitAsync">
+<EditForm Model="_model"  OnValidSubmit="@HandleSubmitAsync">
 
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -46,6 +48,9 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+        
+
         _categories = await _context.Categories.AsNoTracking().ToListAsync();
 
         if(_categories.Count > 0)

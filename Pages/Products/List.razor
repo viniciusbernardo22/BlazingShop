@@ -3,6 +3,7 @@
 @inject NavigationManager _navegation
 @inject AppDbContext _context;
 
+@attribute [StreamRendering(true)]
 <Heading 
     title="List of Products" 
     buttonTitle="new Product" 
@@ -26,7 +27,9 @@
 
 
 @code {
+
     List<Product> productsList = new();
+
 
     void NavToNewProductPage()
     {
